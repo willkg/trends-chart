@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="bootstrap.css" rel="stylesheet" media="screen">
+  <link href="charts.css" rel="stylesheet">
+  <link href="hello.css" rel="stylesheet">
+
+  <title>Hello feedback category</title>
+</head>
+
+<body>
+  <div class="holder">
+    <div class="container content">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="chart-group">
+            <div class="row">
+              <div class="col-xs-12 chart-header">
+                <h3>Hello feedback by category</h3>
+                <p>Post-call feedback for Hello each week broken down by self-reported category. Click a box to see the feedback corresponding to that box (only interesting for the "Other" category). This graph uses live data via the Input API.</p>
+              </div>
+            </div>
+            <div class="row chart">
+              <div id="chart"></div>
+            </div>
+            <div class="row chart-discuss">
+              <!-- Insert chart discussion here -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div id="spacer"></div>
+          <h4 id="listheader"></h4>
+          <ul id="inputlist">
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script> 
+  <script src="d3.v3.min.js" charset="utf-8"></script>
+  <script src="lodash.js"></script>
+  <script src="hello.js"></script>
+</body>
+</html>
+
