@@ -20,13 +20,14 @@
               <div class="col-xs-12 chart-header">
                 <h3>Word trends in Firefox for Android</h3>
                 <p>
-                  Trends of words in Firefox for Android feedback in the en-US locale.
+                  Trends of words for sad feedback for Firefox for
+                  Android feedback in the en-US locale.
                 </p>
               </div>
             </div>
             <div class="row chart">
               <div id="chart">
-                <p id="inprogress">Pulling data now... Please wait.</p>
+                <p id="inprogress">Retrieving and processing data... Please wait.</p>
               </div>
             </div>
             <div class="row chart-discuss">
@@ -42,6 +43,40 @@
           </ul>
         </div>
       </div>
+      <div class="row">
+        <div class="footer">
+          <p>
+            More complete proof of concept dashboard showing Firefox for Android feedback
+            from Input.
+          </p>
+          <p>
+            <a href="https://github.com/willkg/trends-chart">Source code is here.</a>
+          </p>
+          <p>
+            Fork this project and tweak your own dashboard. Keep in mind that Input
+            requests are throttled. If you're tweaking things, you might want
+            to switch to the stage server at input.allizom.org and then switch
+            to the prod server when your code is more stable.
+          </p>
+          <p>
+            If you have an interesting dashboard, let me know!
+          </p>
+          <p>
+            Thanks to:
+          </p>
+          <ul>
+            <li>Cheng who allowed me to repurpose a bunch of his Hello Dashboard
+              code--this is heavily based on that</li>
+            <li>Mike who helped me debug some weird stuff I bumped into</li>
+          </ul>
+          <p>
+            /will: willkg AT mozilla DOT com
+          </p>
+          <p>
+            October 2014
+          </p>
+        </div>
+      </div>
     </div>
   </div>
   <script src="jquery.min.js"></script>
@@ -51,4 +86,3 @@
   <script src="trends.js"></script>
 </body>
 </html>
-
