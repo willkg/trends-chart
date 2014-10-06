@@ -225,6 +225,7 @@
         'per',
         'perhaps',
         'please',
+        'problem',
         'put',
         'rather',
         're',
@@ -286,6 +287,7 @@
         'thru',
         'thus',
         'time',
+        'times',
         'to',
         'together',
         'too',
@@ -307,6 +309,7 @@
         'via',
         'want',
         'was',
+        'way',
         'we',
         'web',
         'well',
@@ -425,10 +428,10 @@
             d3.select(selected)
                 .style("stroke-width", "2px")
                 .style("stroke", "#F00");
-            var title = d.fullname + " category feedback for week of " + d.week;
+            var title = "'" + d.fullname + "' feedback for week of " + d.week + ":";
             d3.select('#listheader').text(title);
-            _.forEach(d.verbatims, function (n, t) {
-                var text = (n > 1)?t + " (x" + n + ")":t;
+            _.forEach(d.verbatims, function (count, t) {
+                var text = (count > 1) ? t + " (x" + count + ")" : t;
                 d3.select("#inputlist")
                     .append("li").text(text);
             });
@@ -499,6 +502,8 @@
                 // stuff we don't need
                 return {
                     "datetime": timeformat.parse(item.created),
+                    "version": item.version,
+                    "description": item.description,
                     "tokens": item.description_tokens,
                     "text": item.description
                 };
@@ -529,6 +534,7 @@
                         'name': word,
                         'verbatims': [],
                         'fullname': word,
+                        'week': displayformat(timeformat.parse(week)),
                         'value': wordsThisWeek[word]
                     });
                 });
@@ -546,6 +552,13 @@
                         item.p0 = item.y0;
                         item.p1 = item.y1;
                         item.p = item.value;
+
+                        // figure out which verbatims go to this word
+                        item.verbatims = _(responses)
+                            .filter(function (resp) { return _.contains(resp.tokens, item.name); })
+                            .map(function (resp) { return resp.description; })
+                            .countBy()
+                            .value();
                     })
                     .value();
 
@@ -564,10 +577,13 @@
         // that's days and not weeks, so there's a granularity mismatch
         // between how we pull data and how we display it. In order to deal
         // with that, we check to see if today is sunday and if not, we
-        // drop the first week in the array because it's only partial.
+        // drop the oldest week in the array because it's only partial.
         if ((new Date()).getDay() !== 0) {
             responses.shift();
         }
+
+        // The current week is partial, so we mark it (partial).
+        responses[responses.length-1].name = responses[responses.length-1].name + ' (partial)';
 
         var categoryArray = _(responses)
             .map(function (week) {
