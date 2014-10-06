@@ -481,8 +481,6 @@
         return tokens;
     }
 
-    d3.select('#spacer').style('height', (getHeight(d3.select('.chart-header')) + 40) + 'px');
-
     d3.json(inputUrl, function (error, json) {
         var timeformat = d3.time.format("%Y-%0m-%0dT%H:%M:%S");
         var displayformat = d3.time.format("%-m/%-d");
@@ -644,8 +642,8 @@
 
         width = getWidth(selection);
         height = width / aspectRatio;
-        if (height > window.innerHeight - getHeight(chartHeader) - getTop(chartHeader) - 40) {
-            height = Math.max(window.innerHeight - getHeight(chartHeader) - getTop(chartHeader) - 40, 400);
+        if (height > window.innerHeight - getHeight(chartHeader) - getTop(chartHeader) - 120) {
+            height = Math.max(window.innerHeight - getHeight(chartHeader) - getTop(chartHeader) - 120, 400);
             width = height * aspectRatio;
         }
 
