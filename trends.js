@@ -611,6 +611,8 @@
         },
         width = null,
         height = null,
+        heightFlub = 200,
+        minHeight = 400,
         aspectRatio = 1.3, // not even setable, I'm lazy yo #TODO
         fillColor = "#c13832",
         y_minValue = 0,
@@ -642,8 +644,9 @@
 
         width = getWidth(selection);
         height = width / aspectRatio;
-        if (height > window.innerHeight - getHeight(chartHeader) - getTop(chartHeader) - 120) {
-            height = Math.max(window.innerHeight - getHeight(chartHeader) - getTop(chartHeader) - 120, 400);
+        if (height > window.innerHeight - getHeight(chartHeader) - getTop(chartHeader) - heightFlub) {
+            height = Math.max(window.innerHeight - getHeight(chartHeader) - getTop(chartHeader) - heightFlub,
+                              minHeight);
             width = height * aspectRatio;
         }
 
